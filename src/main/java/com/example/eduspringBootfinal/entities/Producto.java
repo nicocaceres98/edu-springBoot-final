@@ -16,11 +16,14 @@ public class Producto {
     private String imagen;
     private String talle;
     private Integer stock;
+    @ManyToOne
+    private Usuario usuario;
 
     public Producto() {
     }
 
-    public Producto(Long id, String nombre, String descripcion, Double precio, Integer cantidad, String imagen,String talle, Integer stock) {
+    public Producto(Long id, String nombre, String descripcion, Double precio, Integer cantidad, String imagen, String talle, Integer stock, Usuario usuario) {
+        super();
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -29,6 +32,7 @@ public class Producto {
         this.imagen = imagen;
         this.talle = talle;
         this.stock = stock;
+        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -93,6 +97,13 @@ public class Producto {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

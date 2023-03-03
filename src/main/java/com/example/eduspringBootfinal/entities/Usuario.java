@@ -1,17 +1,30 @@
 package com.example.eduspringBootfinal.entities;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String apellido;
     private String email;
     private String password;
+    @OneToMany(mappedBy = "usuario")
+    private List<Producto> productos;
+    @OneToMany(mappedBy = "usuario")
+    private List<Orden> ordenes;
 
     public Usuario() {
     }
 
     public Usuario(Integer id, String nombre, String apellido, String email, String password) {
+        super();
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -57,6 +70,22 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public List<Orden> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<Orden> ordenes) {
+        this.ordenes = ordenes;
     }
 
     @Override
